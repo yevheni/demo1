@@ -1,5 +1,7 @@
 declare namespace App {
 	interface Album {
-		id: string,
+		userId: number,
+		id: number,
+		title: string,
 	}
 }
