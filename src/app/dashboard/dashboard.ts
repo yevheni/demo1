@@ -36,6 +36,8 @@ export class Dashboard extends Base {
 
 	async createAlbum() {
 		try {
+			this.$loading = true;
+
 			/** Create album */
 			await this.$store.dispatch("createAlbum", this.albumCreateOptions.album);
 
@@ -44,6 +46,8 @@ export class Dashboard extends Base {
 
 			/** Clear album form */
 			this.albumCreateOptions.album = default_data.album;
+
+			this.$loading = false;
 		} catch (err) {
 			this.errorHandle(err);
 		}
@@ -51,11 +55,15 @@ export class Dashboard extends Base {
 
 	async updateAlbum() {
 		try {
+			this.$loading = true;
+
 			/** Update album */
 			await this.$store.dispatch("updateAlbum", this.albumEditOptions.album);
 
 			/** Hide album form */
 			this.hideEditAlbum();
+
+			this.$loading = false;
 		} catch (err) {
 			this.errorHandle(err);
 		}
@@ -63,11 +71,15 @@ export class Dashboard extends Base {
 
 	async deleteAlbum() {
 		try {
+			this.$loading = true;
+
 			/** Delete album */
 			await this.$store.dispatch("deleteAlbum", this.albumEditOptions.album);
 
 			/** Hide album form */
 			this.hideEditAlbum();
+
+			this.$loading = false;
 		} catch (err) {
 			this.errorHandle(err);
 		}

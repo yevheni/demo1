@@ -6,6 +6,8 @@ export class Base extends Vue {
 		const axios_message = (err as any)?.response?.data || "";
 
 		console.error(axios_message || err);
+
+		this.$loading = false;
 	}
 
 	wait(time = 0) {
