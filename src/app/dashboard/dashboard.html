@@ -1,5 +1,38 @@
 <div class="dashboard-component">
-	<div class="container">
-		Dashboard
+	<div class="container py-5">
+		<div class="hstack gap-2 mb-5">
+			<h2 class="mb-0">
+				<span>
+					Albums
+				</span>
+
+				<span class="badge bg-primary rounded-pill">
+					{{ albums.length }}
+				</span>
+			</h2>
+
+			<button
+				type="button"
+				class="btn btn-primary ms-auto"
+				@click="createAlbum"
+			>
+				Create album
+			</button>
+		</div>
+
+		<div class="list-group">
+			<button
+				v-for="item of albums"
+				class="d-block list-group-item list-group-item-action"
+			>
+				<b class="me-3">
+					{{ item.id }}
+				</b>
+
+				<span>
+					{{ item.title }}
+				</span>
+			</button>
+		</div>
 	</div>
 </div>

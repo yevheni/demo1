@@ -29,6 +29,8 @@ export const store = createStore({
 			const albumsRes = await api.get("/albums");
 			const albums = albumsRes.data || [];
 
+			// console.log(albums)
+
 			context.commit("albums", albums);
 		}
 	}
