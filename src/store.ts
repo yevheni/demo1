@@ -21,7 +21,14 @@ export const store = createStore({
 	mutations: {
 		albums(state, payload) {
 			state.albums = payload;
-		}
+		},
+
+		prependAlbum(state, album) {
+			state.albums = [
+				album,
+				...state.albums,
+			];
+		},
 	},
 
 	actions: {
@@ -32,6 +39,15 @@ export const store = createStore({
 			// console.log(albums)
 
 			context.commit("albums", albums);
-		}
+		},
+
+		async createAlbum(context: ActionContext<State, any>, data) {
+			const albumRes = await api.post("/albums", data);
+			const album = albumRes.data;
+
+			// console.log(album)
+
+			context.commit("prependAlbum", album);
+		},
 	}
 });

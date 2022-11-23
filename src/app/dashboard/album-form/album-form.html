@@ -1,0 +1,55 @@
+<div class="album-form-helper modal" :class="{ show }" data-backdrop="1" @click="onBackdrop">
+	<div class="modal-dialog modal-dialog-centered">
+		<form class="modal-content" @submit.prevent="confirm">
+			<div class="modal-header">
+				<h5 class="modal-title">
+					Create album
+				</h5>
+				<button
+					type="button"
+					class="btn-close"
+					@click="cancel"
+				/>
+			</div>
+
+			<div class="modal-body">
+				<label class="form-label">
+					Title
+				</label>
+
+				<input
+					type="text"
+					class="form-control"
+					placeholder="Enter title"
+					v-model="album.title"
+				>
+			</div>
+
+			<div class="modal-footer">
+				<button
+					v-if="showDelete"
+					type="button"
+					class="btn btn-danger"
+					@click="delete_"
+				>
+					Delete
+				</button>
+
+				<button
+					type="button"
+					class="btn btn-secondary"
+					@click="cancel"
+				>
+					Cancel
+				</button>
+
+				<button
+					type="submit"
+					class="btn btn-primary"
+				>
+					Confirm
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
