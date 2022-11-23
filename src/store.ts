@@ -37,6 +37,14 @@ export const store = createStore({
 				state.albums[index] = album;
 			}
 		},
+
+		deleteAlbum(state, id) {
+			const index = state.albums.findIndex(el => el.id === id);
+
+			if (index !== -1) {
+				state.albums.splice(index, 1);
+			}
+		},
 	},
 
 	actions: {
@@ -65,6 +73,13 @@ export const store = createStore({
 			// console.log(album)
 
 			context.commit("updateAlbum", album);
+		},
+
+		async deleteAlbum(context: ActionContext<State, any>, data) {
+			const id = data.id;
+			const albumRes = await api.delete(`/albums/${id}`);
+
+			context.commit("deleteAlbum", id);
 		},
 	}
 });

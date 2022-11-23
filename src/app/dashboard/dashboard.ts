@@ -61,6 +61,18 @@ export class Dashboard extends Base {
 		}
 	}
 
+	async deleteAlbum() {
+		try {
+			/** Delete album */
+			await this.$store.dispatch("deleteAlbum", this.albumEditOptions.album);
+
+			/** Hide album form */
+			this.hideEditAlbum();
+		} catch (err) {
+			this.errorHandle(err);
+		}
+	}
+
 	hideCreateAlbum() {
 		this.albumCreateOptions.show = false;
 	}

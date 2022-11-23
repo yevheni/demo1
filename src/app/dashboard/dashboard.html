@@ -23,6 +23,7 @@
 		<div class="list-group">
 			<button
 				v-for="item of albums"
+				:key="item.id"
 				class="d-block list-group-item list-group-item-action"
 				@click="showEditAlbum(item)"
 			>
