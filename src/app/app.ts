@@ -15,6 +15,7 @@ export class App extends Base {
 
 	/** Methods */
 	async init() {
-		//
+		/** Load albums */
+		await this.$store.dispatch("loadAlbums");
 	}
 }
