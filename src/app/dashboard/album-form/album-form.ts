@@ -9,7 +9,10 @@ import {Emit, Prop} from "vue-property-decorator";
 export class AlbumForm extends Vue {
 	@Prop({ default: false }) show: boolean;
 	@Prop({ default: null }) album: App.Album;
-	@Prop({ default: false }) showDelete: boolean;
+
+	get is_edit() {
+		return typeof this.album?.id !== "undefined";
+	}
 
 	/** Lifecycle */
 	created() {

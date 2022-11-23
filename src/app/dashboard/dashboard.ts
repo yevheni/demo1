@@ -16,6 +16,10 @@ export class Dashboard extends Base {
 		show: false,
 		album: default_data.album,
 	};
+	albumEditOptions = {
+		show: false,
+		album: default_data.album,
+	};
 
 	get albums() {
 		return this.$store.state.albums;
@@ -45,11 +49,33 @@ export class Dashboard extends Base {
 		}
 	}
 
+	async updateAlbum() {
+		try {
+			/** Update album */
+			await this.$store.dispatch("updateAlbum", this.albumEditOptions.album);
+
+			/** Hide album form */
+			this.hideEditAlbum();
+		} catch (err) {
+			this.errorHandle(err);
+		}
+	}
+
 	hideCreateAlbum() {
 		this.albumCreateOptions.show = false;
 	}
 
 	showCreateAlbum() {
 		this.albumCreateOptions.show = true;
+	}
+
+	hideEditAlbum() {
+		this.albumEditOptions.album = default_data.album;
+		this.albumEditOptions.show = false;
+	}
+
+	showEditAlbum(album: App.Album) {
+		this.albumEditOptions.album = this.clone(album);
+		this.albumEditOptions.show = true;
 	}
 }

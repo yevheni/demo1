@@ -7,4 +7,16 @@ export class Base extends Vue {
 
 		console.error(axios_message || err);
 	}
+
+	wait(time = 0) {
+		return new Promise<void>(resolve => {
+			setTimeout(() => {
+				resolve();
+			}, time);
+		});
+	}
+
+	clone<T>(data: T): T {
+		return JSON.parse(JSON.stringify(data));
+	}
 }

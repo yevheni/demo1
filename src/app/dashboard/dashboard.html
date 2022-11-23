@@ -24,9 +24,7 @@
 			<button
 				v-for="item of albums"
 				class="d-block list-group-item list-group-item-action"
-				data-bs-toggle="modal"
-				data-bs-target="#editAlbum"
-				@click="setEditData(item)"
+				@click="showEditAlbum(item)"
 			>
 				<b class="me-3">
 					{{ item.id }}
@@ -43,5 +41,12 @@
 		v-bind="albumCreateOptions"
 		@cancel="hideCreateAlbum"
 		@confirm="createAlbum"
+	/>
+
+	<AlbumForm
+		v-bind="albumEditOptions"
+		@cancel="hideEditAlbum"
+		@confirm="updateAlbum"
+		@delete="deleteAlbum"
 	/>
 </div>

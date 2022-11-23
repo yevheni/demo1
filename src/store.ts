@@ -29,6 +29,14 @@ export const store = createStore({
 				...state.albums,
 			];
 		},
+
+		updateAlbum(state, album) {
+			const index = state.albums.findIndex(el => el.id === album.id);
+
+			if (index !== -1) {
+				state.albums[index] = album;
+			}
+		},
 	},
 
 	actions: {
@@ -48,6 +56,15 @@ export const store = createStore({
 			// console.log(album)
 
 			context.commit("prependAlbum", album);
+		},
+
+		async updateAlbum(context: ActionContext<State, any>, data) {
+			const albumRes = await api.put(`/albums/${data.id}`, data);
+			const album = albumRes.data;
+
+			// console.log(album)
+
+			context.commit("updateAlbum", album);
 		},
 	}
 });

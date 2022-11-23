@@ -3,7 +3,7 @@
 		<form class="modal-content" @submit.prevent="confirm">
 			<div class="modal-header">
 				<h5 class="modal-title">
-					Create album
+					{{ is_edit ? "Edit album" : "Create album" }}
 				</h5>
 				<button
 					type="button"
@@ -27,9 +27,9 @@
 
 			<div class="modal-footer">
 				<button
-					v-if="showDelete"
+					v-if="is_edit"
 					type="button"
-					class="btn btn-danger"
+					class="btn btn-danger me-auto"
 					@click="delete_"
 				>
 					Delete
@@ -47,7 +47,7 @@
 					type="submit"
 					class="btn btn-primary"
 				>
-					Confirm
+					{{ is_edit ? "Save" : "Create" }}
 				</button>
 			</div>
 		</form>
