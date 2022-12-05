@@ -1,25 +1,29 @@
-import "./app.scss";
-import template from "./app.html";
-import {Base} from "./base";
-import {Options} from "vue-class-component";
+import { defineComponent } from "vue";
+import Loading from "@/components/loading/loading-spinner.vue";
 
-@Options({
-	template,
-})
-export class App extends Base {
+export default defineComponent({
+	components: {
+		Loading,
+	},
 
-	/** Lifecycle */
+	data() {
+		return {
+			loading: false,
+		};
+	},
+
 	created() {
-		this.init().catch(this.errorHandle);
-	}
+		this.init().catch((err) => console.error(err));
+	},
 
-	/** Methods */
-	async init() {
-		this.$loading = true;
+	methods: {
+		async init() {
+			this.loading = true;
 
-		/** Load albums */
-		await this.$store.dispatch("loadAlbums");
+			/** Load albums */
+			await this.$store.dispatch("loadAlbums");
 
-		this.$loading = false;
-	}
-}
+			this.loading = false;
+		},
+	},
+});

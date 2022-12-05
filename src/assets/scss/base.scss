@@ -1,0 +1,48 @@
+@import "bootstrap/scss/bootstrap";
+@import "toastr/toastr";
+
+/** Toastr */
+#toast-container {
+	bottom: 1rem;
+	left: 1rem;
+	width: calc(100% - (1rem * 2));
+
+	@media (min-width: 576px) {
+		width: 20rem;
+	}
+
+	.toast {
+		margin-bottom: 0;
+		margin-top: 0.5rem;
+		border-radius: $border-radius;
+		opacity: 1;
+		box-shadow: none;
+		width: 100%;
+		background-image: none !important;
+		padding: 1rem;
+		font-size: 1rem;
+		border: 0;
+
+		.toast-progress {
+			height: 5px;
+			opacity: 0.25;
+			border-radius: 5px;
+		}
+
+		&.toast-error {
+			background-color: $danger;
+		}
+
+		&.toast-success {
+			background-color: $success;
+		}
+
+		&.toast-info {
+			background-color: $primary;
+		}
+
+		&:hover {
+			box-shadow: none;
+		}
+	}
+}
