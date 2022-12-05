@@ -10,7 +10,11 @@ const router = createRouter({
 			name: "home",
 			component: Home,
 		},
-
+		{
+			path: "/demo1",
+			name: "home",
+			component: Home,
+		},
 		{
 			path: "/:pathMatch(.*)*",
 			name: "not-found",
